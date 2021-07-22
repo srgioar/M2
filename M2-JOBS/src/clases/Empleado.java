@@ -36,7 +36,43 @@ public class Empleado {
 		this.salarioBrutoMensual = 0;
 	}
 	
-	public Empleado() {
+	// parecida a modificarSueldo pero esta función lo que hace es chequear si los valores son correctos
+	public void chequearValoresSueldo(Empleado a) {
+		
+		if (a instanceof Junior) {
+			this.IRPF = 0.20;
+			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.15));
+		}
+		
+		// Salario 10% menor
+		if (a instanceof Mid) {
+			this.IRPF = 0.20;
+			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.10));
+		}
+		
+		// Salario 5% menor
+		if (a instanceof Senior) {
+			this.IRPF = 0.20;
+			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.05));
+		}
+		
+		// Cobran un 10% más de salario mensual
+		if (a instanceof Manager) {
+			this.IRPF = 0.20;
+			this.salarioBrutoMensual = (int) (this.salarioBase + (salarioBase * 0.10));
+		}
+		
+		// Cobran un 50% más de su salario mensual
+		if (a instanceof Jefe) {
+			this.IRPF = 0.20;
+			this.salarioBrutoMensual = (int) (this.salarioBase + (salarioBase * 0.50));
+		}
+		
+		// Cobran un 15% menos
+		if (a instanceof EmpleadoBase) {
+			this.IRPF = 0.20;
+			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.15));
+		}
 		
 	}
 	
@@ -70,6 +106,22 @@ public class Empleado {
 		System.out.println("BRUTO ANUAL: " + this.salarioBrutoAnual);
 		System.out.println("NETO ANUAL: " + this.salarioNetoAnual);
 		System.out.println();
+	}
+	
+	@Override
+	public String toString() {
+		
+		String empleadoString = "";
+		
+		empleadoString += this.nombre + "\n";
+		empleadoString += "Tipo empleado: " + this.getClass().getName() + "\n";
+		empleadoString += "impuestos: " + (int)(this.IRPF * 100) + "\n";
+		empleadoString += ("BRUTO MENSUAL: " + this.salarioBrutoMensual + "\n");
+		empleadoString += ("NETO MENSUAL: " + this.salarioNetoMensual + "\n");
+		empleadoString += ("BRUTO ANUAL: " + this.salarioBrutoAnual + "\n");
+		empleadoString += ("NETO ANUAL: " + this.salarioNetoAnual + "\n");
+		
+		return empleadoString;
 	}
 	
 	// Función para modificar el sueldo según el sueldo base y el tipo de objeto de herencia:

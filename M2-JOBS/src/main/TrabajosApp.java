@@ -1,5 +1,7 @@
 package main;
 
+import javax.swing.JOptionPane;
+
 import clases.Empleado;
 import clases.EmpleadoBase;
 import clases.Jefe;
@@ -11,7 +13,7 @@ import clases.Voluntario;
 
 public class TrabajosApp {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		// Creamos un empleado de cada tipo y le damos nombre y sueldo:
 		EmpleadoBase empleadoBase = new EmpleadoBase("Sergio", 1040);
@@ -51,9 +53,81 @@ public class TrabajosApp {
 		for (int i = 0; i < arrayEmpleados.length; i++) {
 			arrayEmpleados[i].aplicarBonus();
 			arrayEmpleados[i].mostrar();
+		}	
+		
+		crearEmpleado();
+
+	}
+	
+	// Invoca excepciones con un throw para utilizar un if y comprobar que el rango de sueldo sea correcto
+	public static void crearEmpleado() throws Exception {
+		
+		String nombreEmpleado = JOptionPane.showInputDialog("NOMBRE EMPLEADO: ");
+		String rangoEmpleado = JOptionPane.showInputDialog("RANGO EMPLEADO: \n Para empleado raso introduce 'base'");
+		int salarioEmpleado = 0;
+		
+		// Si no es voluntario, pedimos también salario
+		
+		if (!rangoEmpleado.toLowerCase().equals("voluntario")) {
+			salarioEmpleado = Integer.parseInt(JOptionPane.showInputDialog("SALARIO BASE: "));
 		}
 		
+		if (rangoEmpleado.toLowerCase().equals("junior")) {
+			
+			if (salarioEmpleado > 900 && salarioEmpleado < 1600) {
+				Junior newJunior = new Junior(nombreEmpleado, salarioEmpleado);
+				JOptionPane.showMessageDialog(null, newJunior.toString());
+				JOptionPane.showMessageDialog(null, newJunior.toString());
+			}
+			
+			else {
+				throw new Exception("VALORES INCORRECTOS");
+			}
+
+		}
 		
+		if (rangoEmpleado.toLowerCase().equals("mid")) {
+			
+			if (salarioEmpleado > 1800 && salarioEmpleado < 2500) {
+				Mid newMid = new Mid(nombreEmpleado, salarioEmpleado);
+				JOptionPane.showMessageDialog(null, newMid.toString());
+			}
+			
+			else {
+				throw new Exception("VALORES INCORRECTOS");
+			}
+			
+		}
+		
+		if (rangoEmpleado.toLowerCase().equals("senior")) {
+			
+			if (salarioEmpleado > 2700 && salarioEmpleado < 4000) {
+				Senior newSenior = new Senior(nombreEmpleado, salarioEmpleado);
+				JOptionPane.showMessageDialog(null, newSenior.toString());
+			}
+			
+			else {
+				throw new Exception("VALORES INCORRECTOS");
+			}
+
+		}
+		
+		if (rangoEmpleado.toLowerCase().equals("base")) {
+			EmpleadoBase newEmpleadoBase = new EmpleadoBase(nombreEmpleado, salarioEmpleado);
+			JOptionPane.showMessageDialog(null, newEmpleadoBase.toString());
+			JOptionPane.showMessageDialog(null, newEmpleadoBase.toString());
+		}
+		
+		if (rangoEmpleado.toLowerCase().equals("manager")) {
+			Manager newManager = new Manager(nombreEmpleado, salarioEmpleado);
+			JOptionPane.showMessageDialog(null, newManager.toString());
+		}
+		
+		if (rangoEmpleado.toLowerCase().equals("jefe")) {
+			Jefe newJefe = new Jefe(nombreEmpleado, salarioEmpleado);
+			JOptionPane.showMessageDialog(null, newJefe.toString());
+		}
+
 	}
 
 }
