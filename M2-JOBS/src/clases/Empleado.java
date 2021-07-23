@@ -132,37 +132,41 @@ public class Empleado {
 		
 		// Salario 15% menor
 		if (a instanceof Junior) {
-			this.IRPF = 0.20;
+			this.IRPF = 0.02;
 			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.15));
 		}
 		
 		// Salario 10% menor
 		if (a instanceof Mid) {
-			this.IRPF = 0.20;
+			this.IRPF = 0.15;
 			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.10));
 		}
 		
 		// Salario 5% menor
 		if (a instanceof Senior) {
-			this.IRPF = 0.20;
+			this.IRPF = 0.24;
 			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.05));
 		}
 		
 		// Cobran un 10% más de salario mensual
 		if (a instanceof Manager) {
-			this.IRPF = 0.20;
+			this.IRPF = 0.26;
 			this.salarioBrutoMensual = (int) (this.salarioBase + (salarioBase * 0.10));
 		}
 		
 		// Cobran un 50% más de su salario mensual
 		if (a instanceof Jefe) {
-			this.IRPF = 0.20;
+			this.IRPF = 0.32;
 			this.salarioBrutoMensual = (int) (this.salarioBase + (salarioBase * 0.50));
 		}
 		
 		// Cobran un 15% menos
+		// Este tipo de Empleado no tiene en el enunciado un tipo imponible (IRPF)
+		// Podría borrarlo porque en la Milestone 3 este tipo de Empleado no se necesita
+		// Pero prefiero ponerle un tipo estándar del 10%
+		
 		if (a instanceof EmpleadoBase) {
-			this.IRPF = 0.20;
+			this.IRPF = 0.10;
 			this.salarioBrutoMensual = (int) (this.salarioBase - (salarioBase * 0.15));
 		}
 	}
