@@ -113,19 +113,39 @@ public class TrabajosApp {
 		}
 		
 		if (rangoEmpleado.toLowerCase().equals("base")) {
+			
+			// El empleado base no tiene restricción de rango de salario
 			EmpleadoBase newEmpleadoBase = new EmpleadoBase(nombreEmpleado, salarioEmpleado);
 			JOptionPane.showMessageDialog(null, newEmpleadoBase.toString());
 			JOptionPane.showMessageDialog(null, newEmpleadoBase.toString());
 		}
 		
 		if (rangoEmpleado.toLowerCase().equals("manager")) {
-			Manager newManager = new Manager(nombreEmpleado, salarioEmpleado);
-			JOptionPane.showMessageDialog(null, newManager.toString());
+			
+			if (salarioEmpleado > 3000 && salarioEmpleado < 5000) {
+				
+				Manager newManager = new Manager(nombreEmpleado, salarioEmpleado);
+				JOptionPane.showMessageDialog(null, newManager.toString());
+				
+			}
+			
+			else {
+				throw new Exception("VALORES INCORRECTOS");
+			}
+
 		}
 		
 		if (rangoEmpleado.toLowerCase().equals("jefe")) {
-			Jefe newJefe = new Jefe(nombreEmpleado, salarioEmpleado);
-			JOptionPane.showMessageDialog(null, newJefe.toString());
+			
+			if (salarioEmpleado > 8000) {
+				Jefe newJefe = new Jefe(nombreEmpleado, salarioEmpleado);
+				JOptionPane.showMessageDialog(null, newJefe.toString());
+			}
+			
+			else {
+				throw new Exception("VALORES INCORRECTOS");
+			}
+
 		}
 
 	}
